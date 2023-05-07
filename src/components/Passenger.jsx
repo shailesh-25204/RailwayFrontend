@@ -35,7 +35,7 @@ const Passenger = () => {
 
         }
         else {
-            trainDataServices.post('/api/postPassDetails', { passengerObj, trainObj })
+            trainDataServices.post('/api/booking/book', { passengerObj, trainObj })
                 .then(res => {
                     console.log(res)
                     navigate('/confirmation')

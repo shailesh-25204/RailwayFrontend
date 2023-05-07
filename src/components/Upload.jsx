@@ -15,7 +15,7 @@ const Upload = () => {
         const formData = new FormData();
         formData.append("file", selectedFile);
         console.log("file uploaded");
-        axios.post("/api", formData)
+        axios.post("/api/admin/uploadCSV", formData)
             .then()
             .catch(e => {
                 console.log(e)

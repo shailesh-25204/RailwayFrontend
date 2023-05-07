@@ -31,6 +31,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentInfo" element={<PaymentInfo />} />
         <Route path="/confirmation" element={<Boom />} />
+        <Route path="/admin" element={<Upload />} />
         
       </Routes>
     </Router>
