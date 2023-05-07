@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import axios from 'axios'
+import axios from '../http-common'
 
 const Upload = () => {
 
@@ -15,7 +15,7 @@ const Upload = () => {
         const formData = new FormData();
         formData.append("file", selectedFile);
         console.log("file uploaded");
-        axios.post("/trains", formData)
+        axios.post("/api", formData)
             .then()
             .catch(e => {
                 console.log(e)

@@ -42,32 +42,28 @@ const FrontPage = (getTrains) => {
   const [trainObj, setTrainObj] = useState(null);
   const navigate = useNavigate();
 
-  const id = 3
+  const obj = {
+    source: source,
+    destination: dest,
+    date: date,
+    seatClass: seatClass,
+  };
+  const obj2 = {
+    params : obj
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const obj = {
-      source: source,
-      dest: dest,
-      date: date,
-      seatClass: seatClass,
-    };
 
-    TrainDataService.getTrains('/api/getTrain', { source: source, destination: dest, date: date })
-      .then(res => {
-        setTrains(res.data);
-        console.log((res.data));
-        let newTrains = res.data
-        // console.log(trains)
-        navigate('/contact', { state: newTrains })
-      })
-      .catch(err => console.log(err))
-
-
-
-
-
-
+    // TrainDataService.post('/api/train/getTrain', obj)
+    //   .then(res => {
+    //     setTrains(res.data);
+    //     console.log((res.data));
+    //     let newTrains = res.data
+    //     // console.log(trains)
+      navigate('/contact', { state: obj2 })
+      // })
+      // .catch(err => console.log(err))
   };
 
 
