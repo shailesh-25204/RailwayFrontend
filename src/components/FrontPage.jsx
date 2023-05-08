@@ -30,6 +30,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Contacts from "./Contacts";
+import img1 from "../assets/Trainbg.jpg";
 
 const FrontPage = (getTrains) => {
   const [source, setSource] = useState("");
@@ -61,29 +62,32 @@ const FrontPage = (getTrains) => {
     //     console.log((res.data));
     //     let newTrains = res.data
     //     // console.log(trains)
-      navigate('/contact', { state: obj2 })
+      navigate('/TrainDetails', { state: obj2 })
       // })
       // .catch(err => console.log(err))
   };
 
 
   return (
-    (loadFront) ? <Box w={"container.xl"} h={"100vh"} bgImage={"bg"}>
-      <Box w={"60%"} m={"auto"} marginTop={"50px"}>
-        <Heading
+    (loadFront) ? <Box w={"container.xl"} h={"100vh"} bgImage={img1} bgRepeat={'no-repeat'} bgSize={'cover'} bgPosition={'center'}>
+      <Box w={"60%"}  m={'0 auto'} h={'100vh'}>
+        
+        <form onSubmit={submitHandler}>
+          <VStack w={"100%"} h={'100vh'} gap={"0.7rem"} justifyContent={'center'} alignItems={'center'} >
+            <HStack w={'100%'} >
+            <Heading
           style={{
             fontSize: "3rem",
             textAlign: "center",
             fontWeight: "900",
-            color: "#202994",
-            textShadow: "2px 2px red",
-            marginBottom: "2rem",
+            color: "#bbb",
+            textShadow: "3px 3px 3px blue",
           }}
+          margin={'3rem auto'}
         >
-          Welcom to SGGS Railways
+          Welcome to SGGS Railways
         </Heading>
-        <form onSubmit={submitHandler}>
-          <VStack w={"100%"} gap={"0.7rem"}>
+            </HStack>
             <HStack w={"100%"}>
               <Input
                 value={source}
@@ -92,14 +96,15 @@ const FrontPage = (getTrains) => {
                 }}
                 w={"100%"}
                 p={"30px"}
-                borderTopLeftRadius={"12px"}
+                borderTopLeftRadius={"20px"}
                 border={"none"}
                 bgColor={"#e2e2e2"}
                 color={"blackAlpha.700"}
-                placeholder="Enter your source"
+                placeholder="From"
                 fontSize={"1.2rem"}
                 css={{
                   outline: "none",
+                  opacity: '0.9'
                 }}
                 required
               />
@@ -108,17 +113,18 @@ const FrontPage = (getTrains) => {
                 w={"100%"}
                 p={"30px"}
                 value={dest}
-                borderTopRightRadius={"12px"}
+                borderTopRightRadius={"20px"}
                 border={"none"}
                 bgColor={"#e2e2e2"}
                 color={"blackAlpha.700"}
-                placeholder="Enter your destination"
+                placeholder="To"
                 fontSize={"1.2rem"}
                 onChange={(e) => {
                   setDest(e.target.value);
                 }}
                 css={{
                   outline: "none",
+                  opacity: '0.9'
                 }}
                 required
 
@@ -129,14 +135,14 @@ const FrontPage = (getTrains) => {
                 w={"100%"}
                 p={"30px"}
                 type="date"
-                borderBottomLeftRadius={"12px"}
+                // borderBottomLeftRadius={"12px"}
                 border={"none"}
                 bgColor={"#e2e2e2"}
                 color={"blackAlpha.700"}
-                placeholder="Enter your source"
                 fontSize={"1.2rem"}
                 css={{
                   outline: "none",
+                  opacity: '0.9'
                 }}
                 onChange={(e) => {
                   setDate(e.target.value)
@@ -144,24 +150,7 @@ const FrontPage = (getTrains) => {
                 value={date}
                 required
               />
-              <Input
-                w={"100%"}
-                p={"30px"}
-                borderBottomRightRadius={"12px"}
-                border={"none"}
-                bgColor={"#e2e2e2"}
-                color={"blackAlpha.700"}
-                placeholder="Enter your source"
-                fontSize={"1.2rem"}
-                css={{
-                  outline: "none",
-                }}
-                onChange={(e) => {
-                  setSeatClass(e.target.value)
-                }}
-                value={seatClass}
-                required
-              />
+              
             </HStack>
 
             <HStack w={"100%"}>
@@ -169,17 +158,21 @@ const FrontPage = (getTrains) => {
                 w={"100%"}
                 p={"30px"}
                 type="submit"
-                borderRadius={"12px"}
+                // borderRadius={"12px"}
+                
+                borderBottomLeftRadius={'20px'}
+                borderBottomRightRadius={'20px'}
                 border={"none"}
-                bgColor={"#ff650e"}
+                bgColor={"#252994"}
                 color={"#e2e2e2"}
                 placeholder="Enter your source"
                 fontSize={"1.3rem"}
                 cursor={"pointer"}
                 css={{
                   outline: "none",
+                  opacity:'0.9',
                   ":hover": {
-                    opacity: "0.9",
+                    opacity: "0.8",
                   },
                 }}
               >

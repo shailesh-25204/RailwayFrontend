@@ -2,30 +2,45 @@ import { Container, Box, Text, Button, HStack, VStack, Heading, Card, Link } fro
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-const Search = ({ id, _id, trainName, arrivalSrc, arrivalDest, acCoaches, sleeperCoaches, departureSrc, trainNumber}) => {
+const Search = ({ id, _id, trainName, arrivalSrc, arrivalDest, acCoaches, sleeperCoaches, departureSrc, trainNumber, acArray, sleeperArray }) => {
 
-    console.log(_id);
+    // console.log(_id);
 
     const navigate = useNavigate();
 
     const trainObj = {
-        id : _id ,
-        trainName : trainName,
-        arrivalSrc : arrivalSrc,
-        arrivalDest : arrivalDest,
-        acCoaches : acCoaches, 
-        sleeperCoaches : sleeperCoaches,
-        departureSrc:departureSrc,
-        trainNumber :trainNumber
+        id: _id,
+        trainName: trainName,
+        arrivalSrc: arrivalSrc,
+        arrivalDest: arrivalDest,
+        acCoaches: acCoaches,
+        sleeperCoaches: sleeperCoaches,
+        departureSrc: departureSrc,
+        trainNumber: trainNumber,
+        acArray: acArray,
+        sleeperArray: sleeperArray,
+        isAC: false
     }
 
 
 
-    const clickHandler = (e) => {
-        console.log(trainObj)
-        
-        navigate('/passenger', { state: trainObj })
+    const clickHandlerSL = (e) => {
+        // console.log(trainObj)
+
+        if (sleeperCoaches > 0)
+            navigate('/PassengerDetails', { state: trainObj })
     }
+
+    const clickHandlerAC = (e) => {
+        // console.log(trainObj)
+
+        if (acCoaches > 0) {
+            trainObj.isAC = true
+            navigate('/PassengerDetails', { state: trainObj })
+        }
+    }
+
+
 
     return <Container maxW={'70%'} m={'10px auto'} borderBlock={'ButtonShadow'} shadow={'2xl'} css={{
         boxShadow: "0px 2px 5px#888888"
@@ -37,7 +52,7 @@ const Search = ({ id, _id, trainName, arrivalSrc, arrivalDest, acCoaches, sleepe
                         {trainNumber}
                         <br />
                         {
-                            console.log(trainName)
+                            // console.log(trainName)
                         }
                         {trainName}
                     </Text>
@@ -74,10 +89,10 @@ const Search = ({ id, _id, trainName, arrivalSrc, arrivalDest, acCoaches, sleepe
                         </Text>
                     </HStack>
                     <Text color={'#00D73C'}>
-                
+
                         Available Seats: {sleeperCoaches}
                     </Text>
-                    <Button m={'0 50px 10px 50px'} onClick={clickHandler} padding={'10px'} borderRadius={'10px'} variant={'solid'} bgColor={'#FF6E1D'}>
+                    <Button m={'0 50px 10px 50px'} onClick={clickHandlerSL} padding={'10px'} borderRadius={'10px'} variant={'solid'} bgColor={'#FF6E1D'}>
                         Book Ticket
                     </Button>
                 </Card>
@@ -94,7 +109,7 @@ const Search = ({ id, _id, trainName, arrivalSrc, arrivalDest, acCoaches, sleepe
                     <Text color={'#00D73C'}>
                         Available Seats: {acCoaches}
                     </Text>
-                    <Button m={'0 50px 10px 50px'} onClick={clickHandler} padding={'10px'} borderRadius={'10px'} bgColor={'#FF6E1D'}>
+                    <Button m={'0 50px 10px 50px'} onClick={clickHandlerAC} padding={'10px'} borderRadius={'10px'} bgColor={'#FF6E1D'}>
                         Book Ticket
                     </Button>
                 </Card>

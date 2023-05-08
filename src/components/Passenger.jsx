@@ -6,13 +6,14 @@ import PaymentInfo from './PaymentInfo';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import trainDataServices from '../services/trainServices';
 import Review from './Review';
+import axios from 'axios'
 // import SinglePassenger from './SinglePassenger';
 const Passenger = () => {
 
     const location = useLocation();
     const trainObj = location.state
     console.log(trainObj);
-    
+
     const [passengerObj, setPassengerObj] = useState([
         {}
     ]);
@@ -30,15 +31,16 @@ const Passenger = () => {
 
     const submitHandlerAgain = (e) => {
         console.log(passengerObj);
-        if (passengerObj.length == 1 && (passengerObj[0].name == undefined || passengerObj[0].age == undefined || passengerObj[0].gender == undefined || passengerObj[0]).birthpref == undefined ) {
+        if (passengerObj.length == 1 && (passengerObj[0].name == undefined || passengerObj[0].age == undefined || passengerObj[0].gender == undefined || passengerObj[0]).birthpref == undefined) {
             console.log('undefined values');
 
         }
         else {
+            console.log()
+
             trainDataServices.post('/api/booking/book', { passengerObj, trainObj })
                 .then(res => {
-                    console.log(res)
-                    navigate('/confirmation')
+                    navigate('/confirmation', { state: { pass: passengerObj, train: trainObj } })
                 })
                 .catch(err => console.log(err))
         }
@@ -54,9 +56,9 @@ const Passenger = () => {
     }
 
     const deleteTask = () => {
-        console.log()
-
-
+        if (passengerObj.length === 1) {
+            return;
+        }
         const filterArray = passengerObj.filter((val, i) => {
             return i !== (passengerObj.length - 1);
 
@@ -69,7 +71,7 @@ const Passenger = () => {
 
     return (
         <>
-        <Review arrivalSrc = {trainObj.arrivalSrc} departureSrc = {trainObj.departureSrc} trainName = {trainObj.trainName} trainNumber = {trainObj.trainNumber}/>
+            <Review arrivalSrc={trainObj.arrivalSrc} departureSrc={trainObj.departureSrc} trainName={trainObj.trainName} trainNumber={trainObj.trainNumber} />
             <Container maxW={'70%'} m={['10px auto', '20px auto']} css={{ boxShadow: "0px 2px 5px#888888" }}>
                 <Container maxW={'100%'} bgColor={'#FF6E1D'}>
                     <div style={{ color: 'white', fontSize: '20px', padding: '10px 30px' }}>Passenger Details</div>

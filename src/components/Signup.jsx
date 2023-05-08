@@ -49,7 +49,7 @@ const submitHandler = (e)=>{
         console.log("Response Recieved")
         console.log(res)
         // console.log(trains)
-        navigate('/login')
+        navigate('/Home')
       })
       .catch(err => console.log(err))
 

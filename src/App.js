@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import TrainDataService from './services/trainServices'
 import Upload from "./components/Upload";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 // import Home from "./components/Home/Home";
 import FrontPage from "./components/FrontPage"
 import Contacts from "./components/Contacts";
@@ -22,11 +22,24 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<FrontPage />} />
+        {/* <Route path="/" element={<FrontPage/>} />
         <Route path="/contact" element={<Contacts />} />
         <Route path="/booking" element={<Bookings />} />
         <Route path="/passenger" element={<Passenger />} />
         <Route path="/login" element={<Login1/>} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/paymentInfo" element={<PaymentInfo />} />
+        <Route path="/confirmation" element={<Boom />} />
+        <Route path="/admin" element={<Upload />} /> */}
+
+
+
+        <Route path="/" element={<Login1/>} />
+        <Route path="/Home" element={<FrontPage />} />
+        <Route path="/TrainDetails" element={<Contacts />} />
+        <Route path="/BookTrain" element={<Bookings />} />
+        <Route path="/PassengerDetails" element={<Passenger/>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentInfo" element={<PaymentInfo />} />
